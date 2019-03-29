@@ -29,10 +29,10 @@ The runtime complexity of this is O(1)
 Obviously this is not the spirit of this question. Thus, To solve for _f_, I
 would implement a divide on conquer strategy--similar to binary search.
 
-1. If the heigh of the building is known, find the height of the building.
-2. Either divide the height of the building in half or choose a random variable
-   between 0 and 200 (the assumed upper limit of floors presently possible to
-   construct).
+1. If the heigh of the building is known, find the height of the building in
+   floors.
+2. Either divide the height of the building in half or choose half way between 0
+   and ~200 (the assumed upper limit of floors presently possible to construct).
 3. I would throw an egg off of that floor.
 4. If the egg breaks, I would divide that floor number by 2 and subtract it from
    the current floor. If it does not break, I would divide that floor number by
