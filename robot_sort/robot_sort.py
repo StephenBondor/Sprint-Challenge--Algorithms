@@ -100,29 +100,58 @@ class SortingRobot:
         """
         # Fill this out
 
-        # Robot sets light to ON: Lets get sorting!
-        self.set_light_on()
-        while self.light_is_on():
-            # Robot sets light to OFF: This list is fully sorted unless we otherwise run into something...
-            self.set_light_off()
-            # 2 Robot see if it can move to second position
+        # Selection sort is faster in this case because the None place value holder has more information
+        # storage capability than the binary light
+
+        # Selection sort solution:
+        while self.can_move_right():
+            self.swap_item()  # set the current position "None"
+
             while self.can_move_right():
-                # Robot picks up the item at current position and moves right
-                self.swap_item()
                 self.move_right()
-                # Robot comparies the two items
+                # find the smallest item in the rest of the list and switch with it
                 if self.compare_item() == 1:
-                    # Swaps if bigger, and sets light to ON: this list was NOT sorted!
                     self.swap_item()
-                    self.set_light_on()
-                # Robot then goes back one space, and put the item it is holding into that space.
+
+            # move back to the location on None
+            while self.compare_item() != None:
                 self.move_left()
-                self.swap_item()
-                # The robot then advances one spaces.
-                self.move_right()
-            # When the robot can not advance, it goes back to the beging of the list.
-            while self.can_move_left():
-                self.move_left()
+
+            # put the smallest item there, and move to the next item
+            self.swap_item()
+            self.move_right()
+
+        # Bubble sort solution
+        # Robot sets light to ON: Lets get sorting!
+        # self.set_light_on()
+        # while self.light_is_on():
+        #     # Robot sets light to OFF: This list is fully sorted unless we otherwise run into something...
+        #     self.set_light_off()
+        #     # 2 Robot see if it can move to second position
+        #     while self.can_move_right():
+        #         # Robot picks up the item at current position and moves right
+        #         self.swap_item()
+        #         self.move_right()
+        #         # Robot comparies the two items
+        #         if self.compare_item() == 1:
+        #             # Swaps if bigger, and sets light to ON: this list was NOT sorted!
+        #             self.swap_item()
+        #             self.set_light_on()
+        #         # Robot then goes back one space, and put the item it is holding into that space.
+        #         self.move_left()
+        #         self.swap_item()
+        #         # The robot then advances one spaces.
+        #         self.move_right()
+        #     # When the robot can not advance, it goes back to the beging of the list.
+        #     while self.can_move_left():
+        #         self.swap_item()
+        #         self.move_left()
+        #         if self.compare_item() == -1:
+        #             self.swap_item()
+        #             self.set_light_on()
+        #         self.move_right()
+        #         self.swap_item()
+        #         self.move_left()
 
         # if the robot can not advance, and the light is off, the list is sorted.
 
